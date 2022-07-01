@@ -1,0 +1,20 @@
+long long tiles(long long n, long long dp[], long long mod) {
+    
+        if(n==0) return 1;
+        if(dp[n]!=-1) return dp[n];
+
+        long long op1=0, op2=0;
+        
+        op1 = tiles(n-1,dp,mod);
+        if(n>=2) op2 = tiles(n-2,dp,mod);
+
+        return dp[n] = (op1%mod + op2%mod)%mod;
+    }
+  
+    long long numberOfWays(long long n) {
+        
+        long long dp[n+1];
+        for(long long i=0;i<=n;i++) dp[i]=-1;
+        long long mod = 1e9+7;
+        return tiles(n,dp,mod);
+    }
