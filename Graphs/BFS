@@ -1,0 +1,33 @@
+template<typename T>
+class graph {
+
+    map<T, list<T>> l;
+
+public:
+    void addEdge(ll x, ll y) {
+        l[x].push_back(y);
+        l[y].push_back(x);
+    }
+
+    void bfs(T src) {
+
+        queue<T> q;
+        map<T,bool> vis;
+
+        q.push(src); 
+        vis[src]=true;
+
+        while(!q.empty()) {
+
+            ll node = q.front();
+            q.pop(); 
+            
+            for(auto child: l[node]) {
+                if(!vis[child]) {
+                    q.push(child);
+                    vis[child]=true;
+                } 
+            }
+        }
+    }
+};
